@@ -39,6 +39,7 @@ class Kind(Base):
                 context['firstline'], context['lastline'], command)
         output = self.vim.call(
             'denite#util#execute_command', command, is_pause)
+        self.vim.call('histadd', ':', command)
         if not output or output == '\n':
             return
         self.vim.command('redraw')
